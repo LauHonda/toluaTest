@@ -33,7 +33,7 @@ public class MessageManager : MonoBehaviour
         var win = Resources.Load("Win/WindowMessage");
         Window = GameObject.Instantiate(win) as GameObject;
 
-        var CanvasObj = FindObjectOfType<Canvas>();
+        var CanvasObj = GameManagerhttp.GetGameManager.WinParent.transform;
 
         if (CanvasObj != null)
         {

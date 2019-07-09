@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Utils
 {
-    public delegate void TimerCallBack();
+    public delegate void TimerCallBack(int Count);
 
     public class Tick
     {

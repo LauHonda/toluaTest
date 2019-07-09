@@ -22,10 +22,8 @@ public class ListGroup
         BaseItem.AddComponent<TransformDataBase>().Init(BaseItem.transform);
     }
 
-
     public GameObject Instantiate()
-    {
-    
+    {  
         GameObject CurrentObj = null;
         if (PoolData.Count > 0)
         {
@@ -42,7 +40,6 @@ public class ListGroup
         CurrentObj.transform.localPosition = Vector3.zero;
         CurrentObj.SetActive(true);
         HottingObj.Add(CurrentObj);
-
         return CurrentObj;
     }
 

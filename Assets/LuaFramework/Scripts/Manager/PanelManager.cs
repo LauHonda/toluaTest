@@ -33,10 +33,10 @@ namespace LuaFramework {
                 GameObject prefab = objs[0] as GameObject;
                 if (prefab == null) return;
 
-                GameObject go = Instantiate(prefab) as GameObject;
+                GameObject go = Instantiate(prefab, Parent) as GameObject;
                 go.name = assetName;
                 go.layer = LayerMask.NameToLayer("Default");
-                go.transform.SetParent(Parent);
+                //go.transform.SetParent(Parent);
                 go.transform.localScale = Vector3.one;
                 go.transform.localPosition = Vector3.zero;
                 go.AddComponent<LuaBehaviour>();

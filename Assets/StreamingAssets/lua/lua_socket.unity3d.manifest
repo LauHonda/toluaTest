@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3778464430
+CRC: 925371479
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5ef4b6edc1899ed0d9048017820eeacb
+    Hash: 54da112aaa124e4deff3241f05f3be07
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
@@ -12,11 +12,11 @@ ClassTypes:
 - Class: 49
   Script: {instanceID: 0}
 Assets:
-- Assets/Lua/socket/headers.lua.bytes
+- Assets/Lua/socket/ftp.lua.bytes
 - Assets/Lua/socket/tp.lua.bytes
-- Assets/Lua/socket/url.lua.bytes
 - Assets/Lua/socket/mbox.lua.bytes
 - Assets/Lua/socket/http.lua.bytes
-- Assets/Lua/socket/ftp.lua.bytes
 - Assets/Lua/socket/smtp.lua.bytes
+- Assets/Lua/socket/headers.lua.bytes
+- Assets/Lua/socket/url.lua.bytes
 Dependencies: []

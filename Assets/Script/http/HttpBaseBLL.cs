@@ -59,7 +59,7 @@ public abstract class HttpBaseBLL : HttpBase
     /// <summary>
     /// 尝试请求服务器
     /// </summary>
-    protected virtual void Send()
+    public virtual void Send()
     {
         data.Send();
     }

@@ -30,6 +30,8 @@ public class LoadImage : MonoBehaviour
         StartCoroutine(GetMessage(url, image));
     }
 
+    [SerializeField]
+    Texture2D defTex;
     /// <summary>
     /// 
     /// </summary>
@@ -38,6 +40,18 @@ public class LoadImage : MonoBehaviour
     /// <param name="IsSize"></param>
     public void Load(string url, RawImage[] image = null, bool IsSize = false)
     {
+        if (url == "")
+        {
+            foreach (var item in image)
+            {
+                if (item != null)
+                {
+                    item.texture = defTex;
+                }
+            }
+            return;
+        }
+
         Texture2D cuuretimage = null;
         bool IsGet = LoadedIamge.TryGetValue(url, out cuuretimage);
         if (IsGet)
@@ -85,7 +99,7 @@ public class LoadImage : MonoBehaviour
         }
         else
         {
-            MessageManager.GetMessageManager.ShowBar("获取头像失败");
+           // MessageManager.GetMessageManager.ShowBar("获取头像失败");
         }
     }
 
@@ -111,7 +125,6 @@ public class LoadImage : MonoBehaviour
     public void SendImage(Texture2D img)
     {
         current2D = img;
-        IMGTT.texture = img;
         StartCoroutine(UploadTexture(Up()));
     }
 
@@ -135,8 +148,6 @@ public class LoadImage : MonoBehaviour
         return base64String;
     }
 
-
-    public RawImage IMGTT;
     public Text MSG;
     public Texture2D tex;
 

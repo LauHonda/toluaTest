@@ -63,19 +63,17 @@ public class Static
         }
     }
 
-
     //初始化程序集
     public void Init()
     {
 
     }
 
-
     public bool MusicSwich = false;
 
     public bool MusicSwichButton = true;
 
-    public string URL = "http://192.168.89.89/YZC/";//"http://www.maidada.vip/";
+    public string URL = "http://yangz.ltest.cn/";//"http://www.maidada.vip/";
 
     public string LocalURL = "http://47.94.99.18:19011/";//"http://192.168.88.60:19003/";
 

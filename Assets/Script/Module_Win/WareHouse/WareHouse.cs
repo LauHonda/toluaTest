@@ -16,8 +16,7 @@ public class WareHouse : HttpBase
     {
         Win.GetButton("wode").onClick.AddListener(delegate ()
         {
-            WindowsManager.GetWindowsManager.OpenWindow(Win.GetTransform("win_我的"));
-            PigList();
+            GoToWareHouse();
         });
 
         ButtonChangeGroup btngroup = Win.Get<ButtonChangeGroup>("btnGroup");
@@ -26,14 +25,17 @@ public class WareHouse : HttpBase
         {
             PigList();
         });
+
         btngroup.GetButton(1).onClick.AddListener(delegate ()
         {
-
+            Money();
         });
+
         btngroup.GetButton(2).onClick.AddListener(delegate ()
         {
             Log();
         });
+
         btngroup.GetButton(3).onClick.AddListener(delegate ()
         {
             message();
@@ -44,6 +46,28 @@ public class WareHouse : HttpBase
             Order();
         });
 
+        Win.GetButton("btn_jiaoyi").onClick.AddListener(delegate ()
+        {
+            Deal();
+        });
+    }
+
+
+    //跳转仓库
+    public void GoToWareHouse()
+    {
+        ButtonChangeGroup btngroup = Win.Get<ButtonChangeGroup>("btnGroup");
+        WindowsManager.GetWindowsManager.OpenWindow(Win.GetTransform("win_我的"));
+        btngroup.SetState(0);
+        PigList();
+    }
+
+    //消息跳转
+    public void ShowMessageWin()
+    {
+        ButtonChangeGroup btngroup = Win.Get<ButtonChangeGroup>("btnGroup");
+        OpenWin(Win.GetTransform("win_我的"));
+        btngroup.SetState(3, true);
     }
 
     //猪列表
@@ -80,6 +104,8 @@ public class WareHouse : HttpBase
             btn_shiyong.gameObject.SetActive(false);
             btn_weiyang.gameObject.SetActive(false);
             btn_chushou.gameObject.SetActive(false);
+            if (child.Keys.Contains("img"))
+                LoadImage.GetLoadIamge.Load(child["img"].ToString(), new RawImage[] { ItemTransform.Get<RawImage>("img") });
             int status = int.Parse(child["type"].ToString());
             if (status == 0)
             {
@@ -90,12 +116,19 @@ public class WareHouse : HttpBase
                 {
 
                 });
+                btn_shiyong.gameObject.SetActive(false);
+                btn_weiyang.gameObject.SetActive(false);
+                btn_chushou.gameObject.SetActive(false);
             }
             else if (status == 1)
             {
                 ItemTransform.GetText("name").text = child["pig_name"].ToString();
                 ItemTransform.GetText("desc").text = string.Format("体重{0}：", child["weight"].ToString());
-                ItemTransform.GetText("time").text = string.Format("喂养倒计时;{0}", child["feed_time"].ToString());
+                string str = child["feed_time"].ToString();
+
+                if (str != "0")
+                    ItemTransform.GetText("time").text = string.Format("喂养倒计时:{0}", child["feed_time"].ToString());
+
                 btn_chushou.gameObject.SetActive(true);
                 btn_chushou.onClick.AddListener(delegate ()
                 {
@@ -109,11 +142,15 @@ public class WareHouse : HttpBase
             }
             else if (status == 2)
             {
-
+                btn_shiyong.gameObject.SetActive(false);
+                btn_weiyang.gameObject.SetActive(false);
+                btn_chushou.gameObject.SetActive(false);
             }
             else if (status == 3)
             {
-
+                btn_shiyong.gameObject.SetActive(false);
+                btn_weiyang.gameObject.SetActive(false);
+                btn_chushou.gameObject.SetActive(false);
             }
             else if (status == 4)
             {
@@ -127,14 +164,40 @@ public class WareHouse : HttpBase
             }
             else if (status == 5)
             {
-
+                ItemTransform.GetText("name").text = child["pig_name"].ToString();
+                ItemTransform.GetText("desc").text = string.Format("数量：X {0}", child["num"].ToString());
+                btn_shiyong.gameObject.SetActive(true);
+                btn_shiyong.onClick.AddListener(delegate ()
+                {
+                    Cloth(child["id"].ToString());
+                });
             }
         }
     }
 
 
+    //使用服装
+    private void Cloth(string id)
+    {
+        Http http = HttpCreatTools.CreatHttp("ajax_clothing_wear.php");
+        http.AddData("huiyuan_id", CachingRegion.Get("huiyuan_id"));
+        http.AddData("id", id);
+        http.Send();
+        http.CurrentData.AddChangeListener(delegate (HttpCallBackMessage msg)
+        {
+            if (msg.Code != HttpCode.ERROR)
+            {
+                MessageManager.GetMessageManager.WindowShowMessage(msg.Data["msg"].ToString());
+                MainScene mainScene = EntityHttpModel.Get<MainScene>();
+                mainScene.Send();
+                PigList();
+            }
+        });
+    }
+
+
     //喂养
-    private void WeiYang(string id)
+    public void WeiYang(string id, bool Update = true)
     {
         Http http = HttpCreatTools.CreatHttp("ajax_feed_pig.php");
         http.AddData("huiyuan_id", CachingRegion.Get("huiyuan_id"));
@@ -145,6 +208,10 @@ public class WareHouse : HttpBase
             if (msg.Code != HttpCode.ERROR)
             {
                 MessageManager.GetMessageManager.WindowShowMessage(msg.Data["msg"].ToString());
+                MainScene mainScene = EntityHttpModel.Get<MainScene>();
+                mainScene.Send();
+                if (Update)
+                    PigList();
             }
         });
     }
@@ -171,7 +238,7 @@ public class WareHouse : HttpBase
     //使用改名卡
     private void ChangeName()
     {
-        MainScene mainScene = EntityHttpModel.Get<MainScene>("MainScene");
+        MainScene mainScene = EntityHttpModel.Get<MainScene>();
         mainScene.ChangeFarmNameAction();
     }
 
@@ -267,17 +334,53 @@ public class WareHouse : HttpBase
         Http http = HttpCreatTools.CreatHttp("ajax_change_status.php");
         http.AddData("huiyuan_id", CachingRegion.Get("huiyuan_id"));
         http.AddData("id", id);
-        http.AddData("choose", CachingRegion.Get(choose));
+        http.AddData("choose", choose);
         http.Send();
         http.CurrentData.AddChangeListener(delegate (HttpCallBackMessage msg)
         {
             if (msg.Code != HttpCode.ERROR)
             {
+                message();
                 MessageManager.GetMessageManager.WindowShowMessage(msg.Data["msg"].ToString());
             }
         });
     }
 
+
+    //交易记录
+    private void Deal()
+    {
+        TransformData win_jy = GetWinTransrormData("win_交易记录");
+        WindowsManager.GetWindowsManager.OpenWindow(win_jy.transform);
+        Http http = HttpCreatTools.CreatHttp("ajax_transaction_record.php");
+        http.AddData("huiyuan_id", CachingRegion.Get("huiyuan_id"));
+        http.Send();
+        http.CurrentData.AddChangeListener(delegate (HttpCallBackMessage msg)
+        {
+            jiaoyi(msg.Data["data"], win_jy);
+        });
+    }
+
+    //交易
+    private void jiaoyi(JsonData jd, TransformData win_jiaoyi)
+    {
+        ListGroup DealList = ListCreatTools.Creat("DealList",
+        win_jiaoyi.GetTransform("Item").gameObject, win_jiaoyi.GetTransform("Content")
+        , true);
+
+        if (jd == null)
+            return;
+
+        foreach (JsonData child in jd)
+        {
+            GameObject item = DealList.Instantiate();
+            TransformData ItemTransform = item.GetComponent<TransformData>().Init();
+            ItemTransform.GetText("time").text = child["sj"].ToString();
+            ItemTransform.GetText("order").text = child["order_str"].ToString();
+            ItemTransform.GetText("product").text = child["title"].ToString();
+            ItemTransform.GetText("money").text = child["money"].ToString();
+        }
+    }
 
     //订单
     private void Order()
@@ -296,9 +399,9 @@ public class WareHouse : HttpBase
 
     private void ShowOrder(JsonData jd)
     {
-        Transform OrderList_con = GetWinTransrormData("win_商品订单").Get<ScrollRect>("Scroll View_Order").content.transform;
+        TransformData OrderList_con = GetWinTransrormData("win_商品订单");
         ListGroup OrderList = ListCreatTools.Creat("OrderList",
-        OrderList_con.GetChild(0).gameObject.gameObject, OrderList_con
+       OrderList_con.GetTransform("Item").gameObject, OrderList_con.GetTransform("Content")
         , true);
 
         if (jd == null)
@@ -321,7 +424,7 @@ public class WareHouse : HttpBase
             {
                 btn_ok.gameObject.SetActive(true);
             }
-           
+
             btn_ok.onClick.AddListener(delegate ()
             {
                 SureOrder(child["id"].ToString());
@@ -341,12 +444,47 @@ public class WareHouse : HttpBase
         {
             if (msg.Code == HttpCode.SUCCESS)
             {
-                Order();              
+                Order();
             }
             if (msg.Code != HttpCode.ERROR)
             {
                 MessageManager.GetMessageManager.WindowShowMessage(msg.Data["msg"].ToString());
             }
         });
+    }
+
+    //资金流水
+    private void Money()
+    {
+
+        Http http = HttpCreatTools.CreatHttp("ajax_capital_log.php");
+        http.AddData("huiyuan_id", CachingRegion.Get("huiyuan_id"));
+        http.Send();
+        http.CurrentData.AddChangeListener(delegate (HttpCallBackMessage msg)
+        {
+            ShowMoney(msg.Data["data"]);
+        });
+    }
+
+
+    private void ShowMoney(JsonData jd)
+    {
+        Transform MoneyList_con = Win.Get<ScrollRect>("Scroll View_Money").content.transform;
+        ListGroup MoneyList = ListCreatTools.Creat("MoneyList",
+        MoneyList_con.GetChild(0).gameObject.gameObject, MoneyList_con
+        , true);
+
+        if (jd == null)
+            return;
+
+        foreach (JsonData child in jd)
+        {
+            GameObject item = MoneyList.Instantiate();
+            TransformData ItemTransform = item.GetComponent<TransformData>().Init();
+            ItemTransform.GetText("time").text = child["sj"].ToString();
+            ItemTransform.GetText("come").text = child["title"].ToString();
+            ItemTransform.GetText("price").text = child["pay"].ToString();
+            ItemTransform.GetText("get").text = child["money"].ToString();
+        }
     }
 }

@@ -332,7 +332,6 @@ public enum SizeType
 }
 
 
-
 public class DicBase<T> 
 {
     public Dictionary<string, object> Body = new Dictionary<string, object>();
@@ -350,12 +349,12 @@ public class DicBase<T>
         return (T)Obj;
     }
 
-    public U Get<U>(string Key)
+    public U Get<U>()
     {
         object Obj = null;
         foreach (var child in Body)
         {
-            if (child.Key == Key)
+            if (child.Key == typeof(U).ToString())
                 Obj = child.Value;
         }
         return (U)Obj;

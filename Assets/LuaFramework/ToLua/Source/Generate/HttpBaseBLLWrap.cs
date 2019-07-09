@@ -8,6 +8,7 @@ public class HttpBaseBLLWrap
 	{
 		L.BeginClass(typeof(HttpBaseBLL), typeof(HttpBase));
 		L.RegFunction("UpdateData", UpdateData);
+		L.RegFunction("Send", Send);
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("Data", get_Data, null);
@@ -48,6 +49,22 @@ public class HttpBaseBLLWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: HttpBaseBLL.UpdateData");
 			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Send(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			HttpBaseBLL obj = (HttpBaseBLL)ToLua.CheckObject<HttpBaseBLL>(L, 1);
+			obj.Send();
+			return 0;
 		}
 		catch (Exception e)
 		{

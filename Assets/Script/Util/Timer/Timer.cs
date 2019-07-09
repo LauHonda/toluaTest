@@ -304,7 +304,7 @@ namespace Utils
                 if (tick.pause == true) continue;
                 if (tick.start <= deltaTime)
                 {
-                    tick.cbfunc();
+                    tick.cbfunc(tick.count);
                     tick.count--;
                     tick.start += tick.interval;
                     if (tick.count == 0)
@@ -353,7 +353,7 @@ namespace Utils
                 if (tick.pause == true) continue;
                 if (tick.start <= curtime)
                 {
-                    tick.cbfunc();
+                    tick.cbfunc(tick.count);
                     tick.count--;
                     tick.start += tick.interval;
                     if (tick.count == 0)

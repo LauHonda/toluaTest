@@ -19,27 +19,46 @@ public class MainButtom : HttpBase
         Button btn_dati = transformData.GetButton("dati");
         Button btn_tongjiaosuo = transformData.GetButton("tongjiaosuo");
 
+        GameObject CENTER = transformData.GetTransform("CENTER").gameObject;
+        CENTER.SetActive(false);
         btn_qiandao.onClick.AddListener(delegate ()
         {
+            CENTER.SetActive(false);
             Qiandao();
         });
 
         btn_yaoqing.onClick.AddListener(delegate ()
         {
+            CENTER.SetActive(false);
             YaoQing();
         });
 
         btn_dati.onClick.AddListener(delegate ()
         {
+            CENTER.SetActive(false);
             TiKu();
         });
 
         btn_tongjiaosuo.onClick.AddListener(delegate ()
         {
+            CENTER.SetActive(false);
             TongJiaoSuo();
         });
+
+        RenWu();
     }
 
+
+    //任务
+    private void RenWu()
+    {
+        GameObject CENTER = transformData.GetTransform("CENTER").gameObject;
+        CENTER.SetActive(false);
+        transformData.GetButton("renwu").onClick.AddListener(delegate ()
+        {
+            CENTER.SetActive(CENTER.activeInHierarchy ? false : true);
+        });
+    }
 
     //签到
     public void Qiandao()
@@ -60,9 +79,22 @@ public class MainButtom : HttpBase
     //邀请
     private void YaoQing()
     {
-        Transform win_Share = transformData.GetTransform("win_分享二维码");
-        WindowsManager.GetWindowsManager.OpenWindow(win_Share);
+        Http http = HttpCreatTools.CreatHttp("ajax_tg.php");
+        http.AddData("huiyuan_id", CachingRegion.Get("huiyuan_id"));
+        http.Send(true);
+        http.CurrentData.AddChangeListener(delegate (HttpCallBackMessage msg)
+        {
+            if (msg.Code != HttpCode.ERROR)
+            {
+                Transform win_Share = transformData.GetTransform("win_分享二维码");
+
+                WindowsManager.GetWindowsManager.OpenWindow(win_Share);
+                RawImage RAW = win_Share.GetComponent<TransformData>().Get<RawImage>("RawImage");
+                LoadImage.GetLoadIamge.Load(msg.Data["qrcode"].ToString(), new RawImage[] { RAW });
+            }
+        });
     }
+
 
     //获取题库
     private void TiKu()
@@ -109,13 +141,11 @@ public class MainButtom : HttpBase
         //{
 
 
-
         GameObject itemA = AnswerList.Instantiate();
         itemA.GetComponent<TransformData>().GetText("Label").text = jsondata["A"].ToString();
 
         GameObject itemB = AnswerList.Instantiate();
         itemB.GetComponent<TransformData>().GetText("Label").text = jsondata["B"].ToString();
-
 
         itemA.GetComponent<Toggle>().onValueChanged.AddListener(delegate (bool isOn)
         {
@@ -161,22 +191,21 @@ public class MainButtom : HttpBase
         });
     }
 
-
     //通交所
     private void TongJiaoSuo()
     {
-        // Transform win_TJS = transformData.GetTransform("");
-        Http http = HttpCreatTools.CreatHttp("ajax_tjs_bind.php");
-        http.AddData("huiyuan_id", CachingRegion.Get("huiyuan_id"));
-        http.AddData("name", "干死你不偿命");
-        http.Send(true);
-        http.CurrentData.AddChangeListener(delegate (HttpCallBackMessage msg)
-        {
-            if (msg.Code == HttpCode.SUCCESS)
-            {
-                MessageManager.GetMessageManager.WindowShowMessage(msg.Data["msg"].ToString());
-            }
-        });
+        Application.OpenURL("http://www.58apk.com/qrcode.php?action=appnew&qrcodeid=111615");
+        //Http http = HttpCreatTools.CreatHttp("ajax_tjs_bind.php");
+        //http.AddData("huiyuan_id", CachingRegion.Get("huiyuan_id"));
+        //http.AddData("name", "干死你不偿命");
+        //http.Send(true);
+        //http.CurrentData.AddChangeListener(delegate (HttpCallBackMessage msg)
+        //{
+        //    if (msg.Code == HttpCode.SUCCESS)
+        //    {
+        //        MessageManager.GetMessageManager.WindowShowMessage(msg.Data["msg"].ToString());
+        //    }
+        //});
     }
 
 }

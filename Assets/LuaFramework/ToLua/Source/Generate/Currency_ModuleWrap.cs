@@ -10,8 +10,7 @@ public class Currency_ModuleWrap
 		L.RegFunction("AddSendValue", AddSendValue);
 		L.RegFunction("SetUrl", SetUrl);
 		L.RegFunction("SendDate", SendDate);
-		L.RegFunction("ToLuaFile", ToLuaFile);
-		L.RegFunction("test", test);
+		L.RegFunction("SendVerCode", SendVerCode);
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.EndClass();
@@ -57,11 +56,46 @@ public class Currency_ModuleWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 2);
-			Currency_Module obj = (Currency_Module)ToLua.CheckObject<Currency_Module>(L, 1);
-			string arg0 = ToLua.CheckString(L, 2);
-			obj.SendDate(arg0);
-			return 0;
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 2)
+			{
+				Currency_Module obj = (Currency_Module)ToLua.CheckObject<Currency_Module>(L, 1);
+				string arg0 = ToLua.CheckString(L, 2);
+				obj.SendDate(arg0);
+				return 0;
+			}
+			else if (count == 3)
+			{
+				Currency_Module obj = (Currency_Module)ToLua.CheckObject<Currency_Module>(L, 1);
+				string arg0 = ToLua.CheckString(L, 2);
+				bool arg1 = LuaDLL.luaL_checkboolean(L, 3);
+				obj.SendDate(arg0, arg1);
+				return 0;
+			}
+			else if (count == 4)
+			{
+				Currency_Module obj = (Currency_Module)ToLua.CheckObject<Currency_Module>(L, 1);
+				string arg0 = ToLua.CheckString(L, 2);
+				bool arg1 = LuaDLL.luaL_checkboolean(L, 3);
+				bool arg2 = LuaDLL.luaL_checkboolean(L, 4);
+				obj.SendDate(arg0, arg1, arg2);
+				return 0;
+			}
+			else if (count == 5)
+			{
+				Currency_Module obj = (Currency_Module)ToLua.CheckObject<Currency_Module>(L, 1);
+				string arg0 = ToLua.CheckString(L, 2);
+				bool arg1 = LuaDLL.luaL_checkboolean(L, 3);
+				bool arg2 = LuaDLL.luaL_checkboolean(L, 4);
+				bool arg3 = LuaDLL.luaL_checkboolean(L, 5);
+				obj.SendDate(arg0, arg1, arg2, arg3);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: Currency_Module.SendDate");
+			}
 		}
 		catch (Exception e)
 		{
@@ -70,30 +104,17 @@ public class Currency_ModuleWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int ToLuaFile(IntPtr L)
+	static int SendVerCode(IntPtr L)
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 1);
-			Currency_Module obj = (Currency_Module)ToLua.CheckObject<Currency_Module>(L, 1);
-			obj.ToLuaFile();
-			return 0;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int test(IntPtr L)
-	{
-		try
-		{
-			ToLua.CheckArgsCount(L, 2);
+			ToLua.CheckArgsCount(L, 5);
 			Currency_Module obj = (Currency_Module)ToLua.CheckObject<Currency_Module>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
-			obj.test(arg0);
+			UnityEngine.GameObject arg1 = (UnityEngine.GameObject)ToLua.CheckObject(L, 3, typeof(UnityEngine.GameObject));
+			string arg2 = ToLua.CheckString(L, 4);
+			string arg3 = ToLua.CheckString(L, 5);
+			obj.SendVerCode(arg0, arg1, arg2, arg3);
 			return 0;
 		}
 		catch (Exception e)

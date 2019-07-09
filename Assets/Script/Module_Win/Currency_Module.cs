@@ -15,6 +15,7 @@ public class Currency_Module : HttpTransformBLL
 
     private bool isSuccessWorningShow;
     private bool isFailedWorningShow;
+    private bool isEorroWorningShow;
 
     protected override void Init()
     {
@@ -24,10 +25,12 @@ public class Currency_Module : HttpTransformBLL
     protected override void OnResponesEvent(HttpCallBackMessage EventData)
     {
         Util.CallMethod(LuaFail, "GetJson",JsonMapper.ToJson(EventData.Data));
-        if (EventData.Code == HttpCode.SUCCESS)
+        if (EventData.Code == HttpCode.SUCCESS && isSuccessWorningShow)
             MessageManager.GetMessageManager.WindowShowMessage(EventData.Data["msg"].ToString());
-        if(EventData.Code == HttpCode.FAILED)
+        if(EventData.Code == HttpCode.FAILED && isFailedWorningShow)
             MessageManager.GetMessageManager.WindowShowMessage(EventData.Data["msg"].ToString());
+        if (EventData.Code == HttpCode.ERROR && isEorroWorningShow)
+            MessageManager.GetMessageManager.WindowShowMessage(EventData.ErroMsg);
     }
 
     protected override string InitUrl()
@@ -45,25 +48,19 @@ public class Currency_Module : HttpTransformBLL
         Data.SetUrl(url);
     }
 
-    public void SendDate(string obj)
+    public void SendDate(string obj,bool isSuc = true,bool isFail = true,bool isEorr = true)
     {
+        isSuccessWorningShow = isSuc;
+        isFailedWorningShow = isFail;
+        isEorroWorningShow = isEorr;
         LuaFail = obj;
         Send();
     }
 
-    public void ToLuaFile()
+    public void SendVerCode(string url,GameObject btn_VerCode,string tel_key,string tel_value)
     {
 
-
-    }
-
-    public void test(string value)
-    {
-        MessageManager.GetMessageManager.WindowShowMessage(value);
-        SetUrl("ajax_login.php");
-        AddSendValue("tel","123456");
-        AddSendValue("password", "123456");
-        AddSendValue("yzm", "123456");
-        SendDate("TestCtrl");
+        HttpVerCode VerCodeMole = new HttpVerCode(url, btn_VerCode.GetComponent<Button>(), tel_key,tel_value);
+    
     }
 }

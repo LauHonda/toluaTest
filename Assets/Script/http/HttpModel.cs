@@ -91,7 +91,7 @@ public class HttpModel : MonoBehaviour
 
     IEnumerator GetMessage(string url)
     {
-        if (!NoldIcon)
+        if (!Data.NoShow)
             Debug.Log(url);
         WWW www = new WWW(url);
         yield return www;
@@ -272,7 +272,7 @@ public class HttpModel : MonoBehaviour
 
     private void StartLoad()
     {
-        if (NoldIcon)
+        if (Data.NoShow)
             return;
         MessageManager.GetMessageManager.AddLockNub();
         isLocksend = true;
@@ -280,7 +280,7 @@ public class HttpModel : MonoBehaviour
 
     private void EndLoad()
     {
-        if (NoldIcon)
+        if (Data.NoShow)
             return;
         MessageManager.GetMessageManager.DisLockNub();
         isLocksend = false;

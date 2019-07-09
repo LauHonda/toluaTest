@@ -11,11 +11,14 @@ namespace Tools
         public static Http CreatHttp(string str)
         {
             Http http = MessageManager.GetMessageManager.Http.Get(str);
+            
             if (http == null)
                 http = new Http(str);
+            else
+                http.Clear();
 
             return http;
-        }
+        }     
     }
 
     public class ListCreatTools
@@ -41,6 +44,11 @@ namespace Tools
             if (Clear)
                 obj.Clear();
             return obj;
+        }
+
+        public static void Clear()
+        {
+            Body.Clear();
         }
     }
 

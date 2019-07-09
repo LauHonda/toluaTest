@@ -125,13 +125,14 @@ namespace LuaFramework {
                 data = new NotiData(NotiConst.UPDATE_DOWNLOAD, currDownFile);
                 if (m_SyncEvent != null) m_SyncEvent(data);
             }
+            
         }
 
         /// <summary>
         /// 调用方法
         /// </summary>
         void OnExtractFile(List<object> evParams) {
-            UnityEngine.Debug.LogWarning("Thread evParams: >>" + evParams.Count);
+            UnityEngine.Debug.LogError("Thread evParams: >>" + evParams.Count);
 
             ///------------------通知更新面板解压完成--------------------
             NotiData data = new NotiData(NotiConst.UPDATE_DOWNLOAD, null);

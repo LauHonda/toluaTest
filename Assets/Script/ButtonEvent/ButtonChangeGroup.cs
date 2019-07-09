@@ -19,34 +19,39 @@ public class ButtonChangeGroup : MonoBehaviour
     [SerializeField]
     private List<ButtonDt> all = new List<ButtonDt>();
 
-    public void Start()
+    void Start()
+    {
+        Init();
+        if (!HaveInit)
+            SetState();
+    }
+
+    bool HaveInit = false;
+
+    public void Init()
     {
         foreach (ButtonDt child in all)
         {
             child.btn.onClick.AddListener(delegate ()
-           {
-               SetState(all.IndexOf(child));
-           });
+            {
+                SetState(all.IndexOf(child));
+            });
         }
-        SetFist();
+        HaveInit = true;
     }
 
-
-    //初始化状态
-    public void SetFist()
-    {
-        SetState(0);
-    }
 
     public Button GetButton(int num)
     {
         return all[num].btn;
     }
 
-
     //设置状态
-    public void SetState(int index)
+    public void SetState(int index = 0, bool action = false)
     {
+        if (!HaveInit)
+            Init();
+
         foreach (ButtonDt item in all)
         {
             if (item.Obj)
@@ -61,5 +66,10 @@ public class ButtonChangeGroup : MonoBehaviour
         if (all[index].selen)
             all[index].btn.image.sprite = all[index].selen;
         all[index].btn.image.color = all[index].selen_color;
+
+        if (action)
+        {
+            all[index].btn.onClick.Invoke();
+        }
     }
 }

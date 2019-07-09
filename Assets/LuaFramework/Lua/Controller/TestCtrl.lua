@@ -62,6 +62,7 @@ function  TestCtrl.GetJson(json)
      --*** 解析Cjson*** --
      --将一个json字符串转换为对象
      local JsonGroup=cjson.decode(json)
+     TestPanel.Worning:GetComponent('Text').text = JsonGroup.msg;
      logWarn("JsonGroup.msg =" ..JsonGroup.msg)
 end
 

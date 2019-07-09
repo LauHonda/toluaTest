@@ -18,13 +18,17 @@ public class Http : NewMessageInfo
         EntityHttp.Add(CurrentUrl, this);
     }
 
-
     public Http(string url = null)
     {
         this.DataName = "data";
         Init(url);
     }
 
+    /// <summary>
+    /// 创建http请求对象
+    /// </summary>
+    /// <param name="url">接口名称</param>
+    /// <param name="dataName">数据header</param>
     public Http(string url, string dataName = "data")
     {
         this.DataName = dataName;
@@ -78,8 +82,18 @@ public class Http : NewMessageInfo
     /// 尝试请求
     /// </summary>
     /// <param name="Clear">指定每次请求之后是否清除事件</param>
-    public void Send(bool Clear = false)
+    public void Send(bool Clear = false, bool NoShow = false)
     {
+        string F_ID = GameManagerhttp.GetGameManager.FriendID;
+        if (!string.IsNullOrEmpty(F_ID))
+        {
+            AddData("friend_id", F_ID);
+        }
+        else
+        {
+            RemoveData("friend_id");
+        }
+        this.NoShow = NoShow;
         if (HttpActivity.Try())
         {
             if (Clear)

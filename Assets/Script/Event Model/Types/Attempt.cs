@@ -85,7 +85,10 @@ namespace UltimateDH
     {
         public delegate bool GenericTryerDelegate(T arg);
 
+        public delegate bool GenericTryerDelegateBase();
+
         GenericTryerDelegate m_Tryer;
+        GenericTryerDelegateBase m_Tryerbase;
         Action<T> m_Listeners;
 
 
@@ -96,6 +99,15 @@ namespace UltimateDH
         public void AddTryer(GenericTryerDelegate tryer)
         {
             m_Tryer += tryer;
+        }
+
+        /// <summary>
+        /// 注册尝试执行此操作的方法。
+        /// 注意：只允许1次尝试！
+        /// </summary>
+        public void AddTryerBase(GenericTryerDelegateBase tryer)
+        {
+            m_Tryerbase += tryer;
         }
 
         /// <summary>
@@ -142,13 +154,26 @@ namespace UltimateDH
 
         private bool CallApprovers()
         {
-            var invocationList = m_Tryer.GetInvocationList();
-            for (int i = 0; i < invocationList.Length; i++)
+            if (m_Tryer != null)
             {
-                if (!(bool)invocationList[i].DynamicInvoke())
-                    return false;
-            }
+                var invocationList = m_Tryer.GetInvocationList();
 
+                for (int i = 0; i < invocationList.Length; i++)
+                {
+                    if (!(bool)invocationList[i].DynamicInvoke())
+                        return false;
+                }
+            }
+            if (m_Tryerbase != null)
+            {
+                var invocatioBasenList = m_Tryerbase.GetInvocationList();
+
+                for (int i = 0; i < invocatioBasenList.Length; i++)
+                {
+                    if (!(bool)invocatioBasenList[i].DynamicInvoke())
+                        return false;
+                }
+            }
             return true;
         }
     }

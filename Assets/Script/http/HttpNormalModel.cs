@@ -18,6 +18,11 @@ public class HttpVerCode
         InitString(URL, Btn, tel);
     }
 
+    public HttpVerCode(string URL, Button Btn, string tel_key,string tel_value)
+    {
+        InitString(URL, Btn, tel_key,tel_value);
+    }
+
     private void InitString(string URL, Button Bnt, string tel)
     {
         Bnt.onClick.AddListener(delegate ()
@@ -27,6 +32,46 @@ public class HttpVerCode
 
             VerCodehtttp.AddData("tel", tel);
             VerCodehtttp.Send();
+            VerCodehtttp.HttpSuccessCallBack(delegate (HttpCallBackMessage msg)
+            {
+                Bnt.interactable = false;
+                Utils.Timer.Instance.AddDeltaTimer(1, 60, 0, delegate (int count)
+                   {
+                       if (count > 1)
+                           Bnt.GetComponentInChildren<Text>().text = "发送成功" + count.ToString();
+                       else
+                       {
+                           Bnt.GetComponentInChildren<Text>().text = "发送";
+                           Bnt.interactable = true;
+                       }
+                   });
+            });
+        });
+    }
+
+    private void InitString(string URL, Button Bnt, string tel_key,string tel_value)
+    {
+        Bnt.onClick.AddListener(delegate ()
+        {
+            if (VerCodehtttp == null)
+                VerCodehtttp = new Http(URL);
+
+            VerCodehtttp.AddData(tel_key, tel_value);
+            VerCodehtttp.Send();
+            VerCodehtttp.HttpSuccessCallBack(delegate (HttpCallBackMessage msg)
+            {
+                Bnt.interactable = false;
+                Utils.Timer.Instance.AddDeltaTimer(1, 60, 0, delegate (int count)
+                {
+                    if (count > 1)
+                        Bnt.GetComponentInChildren<Text>().text = "发送成功" + count.ToString();
+                    else
+                    {
+                        Bnt.GetComponentInChildren<Text>().text = "发送";
+                        Bnt.interactable = true;
+                    }
+                });
+            });
         });
     }
 
@@ -39,6 +84,20 @@ public class HttpVerCode
 
             VerCodehtttp.AddData("tel", tel);
             VerCodehtttp.Send();
+            VerCodehtttp.HttpSuccessCallBack(delegate (HttpCallBackMessage msg)
+            {
+                Bnt.interactable = false;
+                Utils.Timer.Instance.AddDeltaTimer(1, 60, 0, delegate (int count)
+                {
+                    if (count > 1)
+                        Bnt.GetComponentInChildren<Text>().text = "发送成功" + count.ToString();
+                    else
+                    {
+                        Bnt.GetComponentInChildren<Text>().text = "发送";
+                        Bnt.interactable = true;
+                    }
+                });
+            });
         });
     }
 

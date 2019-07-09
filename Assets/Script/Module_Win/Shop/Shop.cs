@@ -6,22 +6,17 @@ using UnityEngine.UI;
 using LitJson;
 public class Shop : HttpBase
 {
-
     protected override string WinID()
     {
         return "win_商城";
     }
 
     protected override void Init()
-    {
-        Transform WinOpen = Win.GetTransform("win_商城");
-
+    {      
         Win.GetButton("shangcheng").onClick.AddListener(delegate ()
         {
-            WindowsManager.GetWindowsManager.OpenWindow(WinOpen);
-            ShopList("1");
+            GoToShop();
         });
-
         Win.GetButton("btn_pig").onClick.AddListener(delegate ()
         {
             ShopList("1");
@@ -40,6 +35,13 @@ public class Shop : HttpBase
         });
     }
 
+    //跳转商城
+    public void GoToShop()
+    {
+        Transform WinOpen = Win.GetTransform("win_商城");
+        WindowsManager.GetWindowsManager.OpenWindow(WinOpen);
+        ShopList("1");
+    }
 
     //商城列表
     public void ShopList(string id)
@@ -54,10 +56,10 @@ public class Shop : HttpBase
         });
     }
 
+
     //显示商品列表
     private void ShowShopList(JsonData jd, string goods_id)
     {
-
         ListGroup ShopList = ListCreatTools.Creat("ShopPig",
         Win.GetTransform("pig").gameObject,
         Win.GetTransform("Content_GroupList"), true);
@@ -75,11 +77,14 @@ public class Shop : HttpBase
 
         if (jd == null)
             return;
+
         foreach (JsonData child in jd)
         {
             GameObject item = ShopList.Instantiate();
             TransformData ItemTransform = item.GetComponent<TransformData>();
+
             LoadImage.GetLoadIamge.Load(child["img"].ToString(), new RawImage[] { ItemTransform.Get<RawImage>("icon") });
+
             ItemTransform.GetText("tag").text = child["title"].ToString();
             ItemTransform.GetText("desc").text = child["content"].ToString();
             Button btn_song = ItemTransform.GetButton("btn_song");

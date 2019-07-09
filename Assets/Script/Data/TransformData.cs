@@ -10,7 +10,7 @@ public class TransformData : MonoBehaviour
 
     void Awake()
     {
-       Init();
+        Init();
     }
 
     /// <summary>
@@ -30,38 +30,107 @@ public class TransformData : MonoBehaviour
     }
 
 
-    public Transform GetTransform(string KEY)
+    public U GetUIComponentInChildren<U>(string KEY) where U : UnityEngine.Object
     {
+        Transform Obj = null;
+        bool isget = BodyDic.TryGetValue(KEY, out Obj);
+        if (isget)
+            return Obj.GetComponentInChildren<U>();
+        return null;
+    }
+
+    public IEnumerable GetUIComponentsInChildren<U>(string KEY) where U : UnityEngine.Object
+    {
+        Transform Obj = null;
+        bool isget = BodyDic.TryGetValue(KEY, out Obj);
+        if (isget)
+            return Obj.GetComponentsInChildren<U>();
+        return null;
+    }
+
+
+    public U GetUIComponentInParent<U>(string KEY) where U : UnityEngine.Object
+    {
+        Transform Obj = null;
+        bool isget = BodyDic.TryGetValue(KEY, out Obj);
+        if (isget)
+            return Obj.GetComponentInParent<U>();
+        return null;
+    }
+
+    public IEnumerable GetUIComponentsInParent<U>(string KEY) where U : UnityEngine.Object
+    {
+        Transform Obj = null;
+        bool isget = BodyDic.TryGetValue(KEY, out Obj);
+        if (isget)
+            return Obj.GetComponentsInParent<U>();
+        return null;
+    }
+
+    public Transform GetTransform(string KEY)
+    {     
         Transform Obj = null;
         BodyDic.TryGetValue(KEY, out Obj);
         return Obj;
     }
 
-    public InputField GetInputField(string KEY)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="KEY">组件名称</param>
+    /// <param name="Clear">是否初始化组件</param>
+    /// <returns></returns>
+    public InputField GetInputField(string KEY, bool Clear = false)
     {
         Transform Obj = null;
         bool isget = BodyDic.TryGetValue(KEY, out Obj);
         if (isget)
-            return Obj.GetComponent<InputField>();
+        {
+            InputField input = Obj.GetComponent<InputField>();
+            if (Clear)
+                input.text = "";
+            return input;
+        }
         return null;
     }
-    
 
-    public Text GetText(string KEY)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="KEY">组件名称</param>
+    /// <param name="Clear">是否初始化组件</param>
+    /// <returns></returns>
+    public Text GetText(string KEY, bool Clear = false)
     {
         Transform Obj = null;
         bool isget = BodyDic.TryGetValue(KEY, out Obj);
         if (isget)
-            return Obj.GetComponent<Text>();
+        {
+            Text text = Obj.GetComponent<Text>();
+            if (Clear)
+                text.text = "";
+            return text;
+        }
         return null;
     }
 
-    public Button GetButton(string KEY)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="KEY">组件名称</param>
+    /// <param name="Clear">是否初始化组件</param>
+    /// <returns></returns>
+    public Button GetButton(string KEY, bool Clear = false)
     {
         Transform Obj = null;
         bool isget = BodyDic.TryGetValue(KEY, out Obj);
         if (isget)
-            return Obj.GetComponent<Button>();
+        {
+            Button btn = Obj.GetComponent<Button>();
+            if (Clear)
+                btn.onClick.RemoveAllListeners();
+            return btn;
+        }
         return null;
     }
 
@@ -115,7 +184,7 @@ public class TransformData : MonoBehaviour
     public void RemoveBody(TransformObj item)
     {
         body.Remove(item);
-       // Remove(item.Obj.name);
+        // Remove(item.Obj.name);
     }
 
     public List<TransformObj> SelfBody = new List<TransformObj>();
@@ -139,7 +208,7 @@ public class TransformData : MonoBehaviour
         foreach (TransformObj child in body)
         {
             Add(child.Obj.name, child.Obj);
-           
+
         }
         return this;
     }

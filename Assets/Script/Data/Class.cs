@@ -200,6 +200,7 @@ public class CheckMessage
 [System.Serializable]
 public class NewMessageInfo
 {
+    public bool NoShow = false;
     public string AddTag;
     public ReceiveType Receivemodel;
     public List<HttpModel> ShareModel = new List<HttpModel>();

@@ -18,7 +18,7 @@ public class NumFollow : MonoBehaviour {
     {
         Debug.Log(INPUT.text);
         float bili =float.Parse(CachingRegion.Get("pigbl"));
-        TEXT.text = (int.Parse(INPUT.text) * bili).ToString();
+        TEXT.text = (int.Parse(INPUT.text) / bili).ToString();
     }
 
 }
