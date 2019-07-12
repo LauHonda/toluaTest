@@ -11,6 +11,7 @@ public class GetSoundState : MonoBehaviour {
     private void Start()
     {
         audio = GetComponent<AudioSource>();
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update ()

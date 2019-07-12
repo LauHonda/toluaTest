@@ -33,6 +33,7 @@ public class AppFacade : Facade
     public void StartUp() {
         SendMessageCommand(NotiConst.START_UP);
         RemoveMultiCommand(NotiConst.START_UP);
+
     }
 }
 

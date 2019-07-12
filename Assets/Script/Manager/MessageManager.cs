@@ -22,24 +22,24 @@ public class MessageManager : MonoBehaviour
 
     void Start()
     {
+        var CanvasObj = GameManagerhttp.GetGameManager.WinParent.transform;
+
         var obj = Resources.Load("Win/LoadLogo");
-        ShowLoad = GameObject.Instantiate(obj) as GameObject;
+        ShowLoad = GameObject.Instantiate(obj, CanvasObj.transform) as GameObject;
 
 
         var Bar = Resources.Load("Win/MessageBar");
-        GameObject barobj = GameObject.Instantiate(Bar) as GameObject;
+        GameObject barobj = GameObject.Instantiate(Bar, CanvasObj.transform) as GameObject;
         ShowMessage = barobj.GetComponent<ShowMessageBar>();
 
         var win = Resources.Load("Win/WindowMessage");
-        Window = GameObject.Instantiate(win) as GameObject;
+        
+        Window = GameObject.Instantiate(win, CanvasObj.transform) as GameObject;
 
-        var CanvasObj = GameManagerhttp.GetGameManager.WinParent.transform;
+        
 
         if (CanvasObj != null)
         {
-            ShowLoad.transform.SetParent(CanvasObj.transform);
-            Window.transform.SetParent(CanvasObj.transform);
-            barobj.transform.SetParent(CanvasObj.transform);
 
             ShowLoad.transform.localPosition = Vector3.zero;
             Window.transform.localPosition = Vector3.zero;

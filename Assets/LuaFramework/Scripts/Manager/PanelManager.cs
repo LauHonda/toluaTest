@@ -12,7 +12,11 @@ namespace LuaFramework {
             get {
                 if (parent == null) {
                     GameObject go = GameObject.FindWithTag("GuiCamera");
-                    if (go != null) parent = go.transform;
+                    if (go != null)
+                    {
+                        parent = go.transform;
+                        //DontDestroyOnLoad(go);
+                    } 
                 }
                 return parent;
             }
@@ -40,7 +44,7 @@ namespace LuaFramework {
                 go.transform.localScale = Vector3.one;
                 go.transform.localPosition = Vector3.zero;
                 go.AddComponent<LuaBehaviour>();
-                go.AddComponent<Currency_Module>();
+                //go.AddComponent<Currency_Module>();
 
                 if (func != null) func.Call(go);
                 Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);

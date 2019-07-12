@@ -12,7 +12,7 @@ public class Http : NewMessageInfo
 
     public void SetUrl(string CurrentUrl)
     {
-        this.url = CurrentUrl;
+        this.url = CurrentUrl;       
         CurrentModel.name = this.url.ToString();
         EntityHttp = MessageManager.GetMessageManager.Http;
         EntityHttp.Add(CurrentUrl, this);
@@ -20,6 +20,7 @@ public class Http : NewMessageInfo
 
     public Http(string url = null)
     {
+        Debug.Log(123);
         this.DataName = "data";
         Init(url);
     }
@@ -38,6 +39,7 @@ public class Http : NewMessageInfo
     protected void Init(string URL = "NewHttpModel")
     {
         GameObject httpModel = new GameObject();
+        //DontDestroyOnLoad(httpModel);
         CurrentModel = httpModel.AddComponent<HttpModel>();
         CurrentModel.Data = this;
         //绑定http消息附属关系
@@ -65,7 +67,8 @@ public class Http : NewMessageInfo
     /// <summary>
     /// 尝试发送请求
     /// </summary>
-    public Attempt HttpActivity = new Attempt();
+    public AttemptFunc HttpActivity = new AttemptFunc();
+
 
 
     public HttpModel CurrentModel;
@@ -94,13 +97,14 @@ public class Http : NewMessageInfo
             RemoveData("friend_id");
         }
         this.NoShow = NoShow;
+        CurrentModel.HttpSuccessCallBack.AddListener(CurrentData.SetAndForceUpdate);
         if (HttpActivity.Try())
         {
             if (Clear)
             {
                 CurrentData.ClearChangeListener();
             }
-            CurrentModel.HttpSuccessCallBack.AddListener(CurrentData.SetAndForceUpdate);
+            //CurrentModel.HttpSuccessCallBack.AddListener(CurrentData.SetAndForceUpdate);
             CurrentModel.HttpSuccessCallBack.AddListener(delegate (HttpCallBackMessage msg)
             {
                 if (msg.Code == HttpCode.SUCCESS)
@@ -110,6 +114,11 @@ public class Http : NewMessageInfo
                         CurrentJsonData.SetAndForceUpdate(jd[DataName]);
                 }
             });
+        }
+        else {
+            //Debug.LogError(12312);
+            CurrentModel.HttpSuccessCallBack.Send(new HttpCallBackMessage() { Code = HttpCode.ERROR });
+            CurrentModel.HttpSuccessCallBack.ClearAllEevnt();
         }
     }
 

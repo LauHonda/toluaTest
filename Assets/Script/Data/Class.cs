@@ -250,10 +250,12 @@ public class NewMessageInfo
     /// <param name="FiltrationAri">对参数结果进行过滤的算法</param>
     /// <param name="CompareKey">当前参数与之比较的参数key值</param>
     /// <param name="CompareAir">比较的算法</param>
-    public void AddData(string key, object Value, Func<string, bool> FiltrationAri = null,string CompareKey = "",Func<string, string, bool> CompareAir = null)
+    public void AddData(string key, object Value,bool empty = false,Func<string, bool> FiltrationAri = null,string CompareKey = "",Func<string, string, bool> CompareAir = null)
     {
         RemoveData(key);
+        
         DataValue data = new DataValue(this);
+        data.Gone = empty;
         data.Name = key;
         data.SetData(Value);
         data.CompareKey = CompareKey;

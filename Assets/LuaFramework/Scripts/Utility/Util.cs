@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using LuaInterface;
 using LuaFramework;
 
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -204,6 +205,8 @@ namespace LuaFramework {
                 return "c:/" + game + "/";
             }
         }
+
+        
 
         public static string GetRelativePath() {
             if (Application.isEditor)

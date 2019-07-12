@@ -32,6 +32,7 @@ public class Login : HttpTransformBLL
 
         //初始化http数据
         Data.AddData("tel", tel_InputField);
+        
         Data.AddData("password", password_InputField);
         Data.AddData("yzm", verificationCode_InputField);
         transformData.GetButton("btn_login").onClick.AddListener(Send);

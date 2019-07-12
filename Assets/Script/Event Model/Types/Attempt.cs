@@ -5,6 +5,85 @@ namespace UltimateDH
 {
     public delegate bool TryerDelegate();
 
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class AttemptFunc
+    {
+        private TryerDelegate m_Tryer;
+        private Func<bool> m_Listeners;
+
+
+        /// <summary>
+        /// 注册尝试执行此操作的方法。
+        /// 注意：只允许1次尝试！
+        /// </summary>
+        public void AddTryer(TryerDelegate tryer)
+        {
+            m_Tryer += tryer;
+        }
+
+        /// <summary>
+        /// 注册尝试执行此操作的方法。
+        /// 注意：只允许1次尝试！
+        /// </summary>
+        public void RemoveTryer(TryerDelegate tryer)
+        {
+            m_Tryer -= tryer;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void AddListener(Func<bool> listener)
+        {
+            m_Listeners += listener;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void RemoveListener(Func<bool> listener)
+        {
+            m_Listeners -= listener;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool Try()
+        {
+            bool wasSuccessful = CallApprovers();
+            if (wasSuccessful)
+            {
+                bool IsDone = false;
+                if (m_Listeners != null)
+                    IsDone = m_Listeners();
+                return IsDone;
+            }
+
+            return false;
+        }
+
+
+        private bool CallApprovers()
+        {
+            var invocationList = m_Tryer.GetInvocationList();
+            for (int i = 0; i < invocationList.Length; i++)
+            {
+                if (!(bool)invocationList[i].DynamicInvoke())
+                    return false;
+            }
+
+            return true;
+        }
+    }
+
+
+
+
     /// <summary>
     /// 
     /// </summary>

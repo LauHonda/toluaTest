@@ -22,7 +22,9 @@ public class GameManagerhttp : MonoBehaviour
 
     private void Start()
     {
+        WinParent = GameObject.Find("CanvasTop").GetComponent<TransformData>();
         UpdateWin.Send(WinParent.Init());
+        DontDestroyOnLoad(WinParent.gameObject);
         //StartCoroutine("TimeDoAction");
 
     }

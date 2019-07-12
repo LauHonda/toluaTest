@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using LuaInterface;
 using System.Reflection;
 using System.IO;
-
+using UnityEngine.SceneManagement;
 
 namespace LuaFramework {
     public class GameManager : Manager {
@@ -285,6 +285,36 @@ namespace LuaFramework {
         void OnPoolPushElement(TestObjectClass obj) {
             Debug.Log("OnPoolPushElement--->>>" + obj);
         }
+
+
+
+        /// <summary>
+        /// 切换场景
+        /// </summary>
+        ///
+
+        static AsyncOperation _asyncOperation;
+        static LuaFunction _loadSceneCallBack;
+        static bool isload = false;
+        public static void LoadScene(string scenename, LuaFunction luafun)
+        {
+            //LoadSceneFinish += luafun.Call;
+            _asyncOperation = SceneManager.LoadSceneAsync(scenename);
+            _loadSceneCallBack = luafun;
+            isload = true;
+        }
+        private void Update()
+        {
+            if (isload &&_asyncOperation.isDone)
+            {
+               
+                _loadSceneCallBack.Call();
+                isload = false;
+            }
+        }
+
+
+
 
         /// <summary>
         /// 析构函数

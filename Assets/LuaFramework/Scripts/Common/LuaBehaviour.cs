@@ -9,6 +9,7 @@ namespace LuaFramework {
     public class LuaBehaviour : View {
         private string data = null;
         private Dictionary<string, LuaFunction> buttons = new Dictionary<string, LuaFunction>();
+        private Dictionary<string, LuaFunction> other = new Dictionary<string, LuaFunction>();
 
         protected void Awake() {
             Util.CallMethod(name, "Awake", gameObject);
@@ -39,6 +40,7 @@ namespace LuaFramework {
             );
         }
 
+
         /// <summary>
         /// 删除单击事件
         /// </summary>
@@ -66,6 +68,37 @@ namespace LuaFramework {
         }
 
         //-----------------------------------------------------------------
+
+
+
+
+        public void AddOnEndEdit(GameObject go, LuaFunction luafunc)
+        {
+            if (go == null || luafunc == null) return;
+            other.Add(go.name, luafunc);
+            go.GetComponent<InputField>().onEndEdit.AddListener(
+                delegate {
+                    luafunc.Call(go);
+                }
+            );
+        }
+
+        public void RemoveOtherEvent(GameObject go)
+        {
+            if (go == null) return;
+            LuaFunction luafunc = null;
+            if (other.TryGetValue(go.name, out luafunc))
+            {
+                luafunc.Dispose();
+                luafunc = null;
+                other.Remove(go.name);
+            }
+        }
+
+
+
+
+
         protected void OnDestroy() {
             ClearClick();
 #if ASYNC_MODE

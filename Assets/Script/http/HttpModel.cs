@@ -47,10 +47,10 @@ public class HttpModel : MonoBehaviour
     //创建网络返回消息
     HttpCallBackMessage msg = new HttpCallBackMessage();
 
-    public void Get()
+    public bool Get()
     {
         if (isLocksend)
-            return;
+            return false;
         msg.Code = HttpCode.FAILED;
         StartLoad();
         Data.ErrorCode = "-1";
@@ -76,7 +76,7 @@ public class HttpModel : MonoBehaviour
                 if (str == "Error")
                 {
                     EndLoad();
-                    return;
+                    return false;
                 }
                 if (str == "Gone")
                     continue;
@@ -87,6 +87,7 @@ public class HttpModel : MonoBehaviour
 
         url = url + message;
         StartCoroutine(GetMessage(url));
+		return true;
     }
 
     IEnumerator GetMessage(string url)

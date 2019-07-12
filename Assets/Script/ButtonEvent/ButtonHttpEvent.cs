@@ -14,7 +14,7 @@ public  class ButtonHttpEvent : ButtonEventBase {
     }
     public void AddHttpListener(TypeEvent GetModel, string GetValue)
     {
-        ActionEvent += GetModel.SendModel.Get;
+        //ActionEvent += GetModel.SendModel.Get;
         MyModel = GetModel;
         SaveValue = GetValue;
     }

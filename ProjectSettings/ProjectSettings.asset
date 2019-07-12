@@ -140,7 +140,7 @@ PlayerSettings:
     Android: com.qy.test
     Standalone: unity.DefaultCompany.LuaFramework_UGUI
     Tizen: com.junfine.luaframework
-    iOS: com.junfine.luaframework
+    iOS: com.qy.test
     tvOS: com.junfine.luaframework
   buildNumber:
     iOS: 
@@ -162,7 +162,7 @@ PlayerSettings:
     serializedVersion: 2
     m_Bits: 238
   iPhoneSdkVersion: 988
-  iOSTargetOSVersionString: 6.0
+  iOSTargetOSVersionString: 7.0
   tvOSSdkVersion: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 
@@ -523,15 +523,16 @@ PlayerSettings:
     4: ASYNC_MODE
     7: ASYNC_MODE
   platformArchitecture:
-    iOS: 0
+    iOS: 2
   scriptingBackend:
     Metro: 2
     WP8: 2
     WebGL: 1
-    iOS: 0
+    iOS: 1
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
-  apiCompatibilityLevelPerPlatform: {}
+  apiCompatibilityLevelPerPlatform:
+    iOS: 2
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: SimpleFramework

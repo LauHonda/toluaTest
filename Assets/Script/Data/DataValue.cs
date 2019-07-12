@@ -123,6 +123,7 @@ public class EmptyItem
 [System.Serializable]
 public class DataValue
 {
+    public bool Gone = false;
     public DataValue(NewMessageInfo data = null)
     {
         CurrentData = data;
@@ -217,12 +218,17 @@ public class DataValue
             case GetTypeValue.GetFromToggleGroup:
                 IEnumerable<Toggle> Group = toggleGroup.ActiveToggles();
                 List<Toggle> currentToggel = new List<Toggle>(Group);
-                if (currentToggel.Count <= 0)
+                if (currentToggel.Count <= 0 && !Gone)
                 {
                     Debug.LogError(toggleGroup.name + ":请至少选择一个toogleGroup标签");
                     return "Error";
                 }
-                ValueData = currentToggel[0].transform.GetSiblingIndex().ToString();
+                else if (currentToggel.Count > 0) { 
+                    ValueData = (currentToggel[0].transform.GetSiblingIndex()-1).ToString();
+                Debug.Log(ValueData);
+        }
+                else
+                    ValueData = "0";
                 break;
             case GetTypeValue.GetFromToggle:
                 ValueData = toggle.isOn ? "1" : "0";
@@ -244,7 +250,7 @@ public class DataValue
 
         if (ValueData == string.Empty)
         {
-            if (!EmptyBody.IsGone(Name))
+            if (!Gone)
             {
                 MessageManager.GetMessageManager.WindowShowMessage("参数不能为空");
                 Debug.Log("参数不能为空" + "--输出接口字段--" + Name);

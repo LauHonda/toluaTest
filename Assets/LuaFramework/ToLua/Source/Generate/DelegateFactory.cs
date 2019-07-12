@@ -30,9 +30,15 @@ public class DelegateFactory
 		dict.Add(typeof(UnityEngine.AudioClip.PCMReaderCallback), factory.UnityEngine_AudioClip_PCMReaderCallback);
 		dict.Add(typeof(UnityEngine.AudioClip.PCMSetPositionCallback), factory.UnityEngine_AudioClip_PCMSetPositionCallback);
 		dict.Add(typeof(UnityEngine.RectTransform.ReapplyDrivenProperties), factory.UnityEngine_RectTransform_ReapplyDrivenProperties);
-		dict.Add(typeof(UnityEngine.UI.InputField.OnValidateInput), factory.UnityEngine_UI_InputField_OnValidateInput);
 		dict.Add(typeof(System.Action<NotiData>), factory.System_Action_NotiData);
 		dict.Add(typeof(System.Action<UnityEngine.Object[]>), factory.System_Action_UnityEngine_Objects);
+		dict.Add(typeof(System.Action<HttpCallBackMessage>), factory.System_Action_HttpCallBackMessage);
+		dict.Add(typeof(System.Func<string,bool>), factory.System_Func_string_bool);
+		dict.Add(typeof(System.Func<string,string,bool>), factory.System_Func_string_string_bool);
+		dict.Add(typeof(UltimateDH.Value<HttpCallBackMessage>.Filter), factory.UltimateDH_Value_HttpCallBackMessage_Filter);
+		dict.Add(typeof(LitJson.WrapperFactory), factory.LitJson_WrapperFactory);
+		dict.Add(typeof(UnityEngine.UI.InputField.OnValidateInput), factory.UnityEngine_UI_InputField_OnValidateInput);
+		dict.Add(typeof(UnityEngine.Events.UnityAction<string>), factory.UnityEngine_Events_UnityAction_string);
 
 		DelegateTraits<System.Action>.Init(factory.System_Action);
 		DelegateTraits<UnityEngine.Events.UnityAction>.Init(factory.UnityEngine_Events_UnityAction);
@@ -47,9 +53,15 @@ public class DelegateFactory
 		DelegateTraits<UnityEngine.AudioClip.PCMReaderCallback>.Init(factory.UnityEngine_AudioClip_PCMReaderCallback);
 		DelegateTraits<UnityEngine.AudioClip.PCMSetPositionCallback>.Init(factory.UnityEngine_AudioClip_PCMSetPositionCallback);
 		DelegateTraits<UnityEngine.RectTransform.ReapplyDrivenProperties>.Init(factory.UnityEngine_RectTransform_ReapplyDrivenProperties);
-		DelegateTraits<UnityEngine.UI.InputField.OnValidateInput>.Init(factory.UnityEngine_UI_InputField_OnValidateInput);
 		DelegateTraits<System.Action<NotiData>>.Init(factory.System_Action_NotiData);
 		DelegateTraits<System.Action<UnityEngine.Object[]>>.Init(factory.System_Action_UnityEngine_Objects);
+		DelegateTraits<System.Action<HttpCallBackMessage>>.Init(factory.System_Action_HttpCallBackMessage);
+		DelegateTraits<System.Func<string,bool>>.Init(factory.System_Func_string_bool);
+		DelegateTraits<System.Func<string,string,bool>>.Init(factory.System_Func_string_string_bool);
+		DelegateTraits<UltimateDH.Value<HttpCallBackMessage>.Filter>.Init(factory.UltimateDH_Value_HttpCallBackMessage_Filter);
+		DelegateTraits<LitJson.WrapperFactory>.Init(factory.LitJson_WrapperFactory);
+		DelegateTraits<UnityEngine.UI.InputField.OnValidateInput>.Init(factory.UnityEngine_UI_InputField_OnValidateInput);
+		DelegateTraits<UnityEngine.Events.UnityAction<string>>.Init(factory.UnityEngine_Events_UnityAction_string);
 
 		TypeTraits<System.Action>.Init(factory.Check_System_Action);
 		TypeTraits<UnityEngine.Events.UnityAction>.Init(factory.Check_UnityEngine_Events_UnityAction);
@@ -64,9 +76,15 @@ public class DelegateFactory
 		TypeTraits<UnityEngine.AudioClip.PCMReaderCallback>.Init(factory.Check_UnityEngine_AudioClip_PCMReaderCallback);
 		TypeTraits<UnityEngine.AudioClip.PCMSetPositionCallback>.Init(factory.Check_UnityEngine_AudioClip_PCMSetPositionCallback);
 		TypeTraits<UnityEngine.RectTransform.ReapplyDrivenProperties>.Init(factory.Check_UnityEngine_RectTransform_ReapplyDrivenProperties);
-		TypeTraits<UnityEngine.UI.InputField.OnValidateInput>.Init(factory.Check_UnityEngine_UI_InputField_OnValidateInput);
 		TypeTraits<System.Action<NotiData>>.Init(factory.Check_System_Action_NotiData);
 		TypeTraits<System.Action<UnityEngine.Object[]>>.Init(factory.Check_System_Action_UnityEngine_Objects);
+		TypeTraits<System.Action<HttpCallBackMessage>>.Init(factory.Check_System_Action_HttpCallBackMessage);
+		TypeTraits<System.Func<string,bool>>.Init(factory.Check_System_Func_string_bool);
+		TypeTraits<System.Func<string,string,bool>>.Init(factory.Check_System_Func_string_string_bool);
+		TypeTraits<UltimateDH.Value<HttpCallBackMessage>.Filter>.Init(factory.Check_UltimateDH_Value_HttpCallBackMessage_Filter);
+		TypeTraits<LitJson.WrapperFactory>.Init(factory.Check_LitJson_WrapperFactory);
+		TypeTraits<UnityEngine.UI.InputField.OnValidateInput>.Init(factory.Check_UnityEngine_UI_InputField_OnValidateInput);
+		TypeTraits<UnityEngine.Events.UnityAction<string>>.Init(factory.Check_UnityEngine_Events_UnityAction_string);
 
 		StackTraits<System.Action>.Push = factory.Push_System_Action;
 		StackTraits<UnityEngine.Events.UnityAction>.Push = factory.Push_UnityEngine_Events_UnityAction;
@@ -81,9 +99,15 @@ public class DelegateFactory
 		StackTraits<UnityEngine.AudioClip.PCMReaderCallback>.Push = factory.Push_UnityEngine_AudioClip_PCMReaderCallback;
 		StackTraits<UnityEngine.AudioClip.PCMSetPositionCallback>.Push = factory.Push_UnityEngine_AudioClip_PCMSetPositionCallback;
 		StackTraits<UnityEngine.RectTransform.ReapplyDrivenProperties>.Push = factory.Push_UnityEngine_RectTransform_ReapplyDrivenProperties;
-		StackTraits<UnityEngine.UI.InputField.OnValidateInput>.Push = factory.Push_UnityEngine_UI_InputField_OnValidateInput;
 		StackTraits<System.Action<NotiData>>.Push = factory.Push_System_Action_NotiData;
 		StackTraits<System.Action<UnityEngine.Object[]>>.Push = factory.Push_System_Action_UnityEngine_Objects;
+		StackTraits<System.Action<HttpCallBackMessage>>.Push = factory.Push_System_Action_HttpCallBackMessage;
+		StackTraits<System.Func<string,bool>>.Push = factory.Push_System_Func_string_bool;
+		StackTraits<System.Func<string,string,bool>>.Push = factory.Push_System_Func_string_string_bool;
+		StackTraits<UltimateDH.Value<HttpCallBackMessage>.Filter>.Push = factory.Push_UltimateDH_Value_HttpCallBackMessage_Filter;
+		StackTraits<LitJson.WrapperFactory>.Push = factory.Push_LitJson_WrapperFactory;
+		StackTraits<UnityEngine.UI.InputField.OnValidateInput>.Push = factory.Push_UnityEngine_UI_InputField_OnValidateInput;
+		StackTraits<UnityEngine.Events.UnityAction<string>>.Push = factory.Push_UnityEngine_Events_UnityAction_string;
 	}
     
     public static Delegate CreateDelegate(Type t, LuaFunction func = null)
@@ -946,71 +970,6 @@ public class DelegateFactory
 		ToLua.Push(L, o);
 	}
 
-	class UnityEngine_UI_InputField_OnValidateInput_Event : LuaDelegate
-	{
-		public UnityEngine_UI_InputField_OnValidateInput_Event(LuaFunction func) : base(func) { }
-		public UnityEngine_UI_InputField_OnValidateInput_Event(LuaFunction func, LuaTable self) : base(func, self) { }
-
-		public char Call(string param0, int param1, char param2)
-		{
-			func.BeginPCall();
-			func.Push(param0);
-			func.Push(param1);
-			func.Push(param2);
-			func.PCall();
-			char ret = (char)func.CheckNumber();
-			func.EndPCall();
-			return ret;
-		}
-
-		public char CallWithSelf(string param0, int param1, char param2)
-		{
-			func.BeginPCall();
-			func.Push(self);
-			func.Push(param0);
-			func.Push(param1);
-			func.Push(param2);
-			func.PCall();
-			char ret = (char)func.CheckNumber();
-			func.EndPCall();
-			return ret;
-		}
-	}
-
-	public UnityEngine.UI.InputField.OnValidateInput UnityEngine_UI_InputField_OnValidateInput(LuaFunction func, LuaTable self, bool flag)
-	{
-		if (func == null)
-		{
-			UnityEngine.UI.InputField.OnValidateInput fn = delegate(string param0, int param1, char param2) { return '\0'; };
-			return fn;
-		}
-
-		if(!flag)
-		{
-			UnityEngine_UI_InputField_OnValidateInput_Event target = new UnityEngine_UI_InputField_OnValidateInput_Event(func);
-			UnityEngine.UI.InputField.OnValidateInput d = target.Call;
-			target.method = d.Method;
-			return d;
-		}
-		else
-		{
-			UnityEngine_UI_InputField_OnValidateInput_Event target = new UnityEngine_UI_InputField_OnValidateInput_Event(func, self);
-			UnityEngine.UI.InputField.OnValidateInput d = target.CallWithSelf;
-			target.method = d.Method;
-			return d;
-		}
-	}
-
-	bool Check_UnityEngine_UI_InputField_OnValidateInput(IntPtr L, int pos)
-	{
-		return TypeChecker.CheckDelegateType(typeof(UnityEngine.UI.InputField.OnValidateInput), L, pos);
-	}
-
-	void Push_UnityEngine_UI_InputField_OnValidateInput(IntPtr L, UnityEngine.UI.InputField.OnValidateInput o)
-	{
-		ToLua.Push(L, o);
-	}
-
 	class System_Action_NotiData_Event : LuaDelegate
 	{
 		public System_Action_NotiData_Event(LuaFunction func) : base(func) { }
@@ -1121,6 +1080,431 @@ public class DelegateFactory
 	}
 
 	void Push_System_Action_UnityEngine_Objects(IntPtr L, System.Action<UnityEngine.Object[]> o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class System_Action_HttpCallBackMessage_Event : LuaDelegate
+	{
+		public System_Action_HttpCallBackMessage_Event(LuaFunction func) : base(func) { }
+		public System_Action_HttpCallBackMessage_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(HttpCallBackMessage param0)
+		{
+			func.BeginPCall();
+			func.PushObject(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(HttpCallBackMessage param0)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.PushObject(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public System.Action<HttpCallBackMessage> System_Action_HttpCallBackMessage(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			System.Action<HttpCallBackMessage> fn = delegate(HttpCallBackMessage param0) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			System_Action_HttpCallBackMessage_Event target = new System_Action_HttpCallBackMessage_Event(func);
+			System.Action<HttpCallBackMessage> d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			System_Action_HttpCallBackMessage_Event target = new System_Action_HttpCallBackMessage_Event(func, self);
+			System.Action<HttpCallBackMessage> d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_System_Action_HttpCallBackMessage(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(System.Action<HttpCallBackMessage>), L, pos);
+	}
+
+	void Push_System_Action_HttpCallBackMessage(IntPtr L, System.Action<HttpCallBackMessage> o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class System_Func_string_bool_Event : LuaDelegate
+	{
+		public System_Func_string_bool_Event(LuaFunction func) : base(func) { }
+		public System_Func_string_bool_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public bool Call(string param0)
+		{
+			func.BeginPCall();
+			func.Push(param0);
+			func.PCall();
+			bool ret = func.CheckBoolean();
+			func.EndPCall();
+			return ret;
+		}
+
+		public bool CallWithSelf(string param0)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.Push(param0);
+			func.PCall();
+			bool ret = func.CheckBoolean();
+			func.EndPCall();
+			return ret;
+		}
+	}
+
+	public System.Func<string,bool> System_Func_string_bool(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			System.Func<string,bool> fn = delegate(string param0) { return false; };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			System_Func_string_bool_Event target = new System_Func_string_bool_Event(func);
+			System.Func<string,bool> d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			System_Func_string_bool_Event target = new System_Func_string_bool_Event(func, self);
+			System.Func<string,bool> d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_System_Func_string_bool(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(System.Func<string,bool>), L, pos);
+	}
+
+	void Push_System_Func_string_bool(IntPtr L, System.Func<string,bool> o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class System_Func_string_string_bool_Event : LuaDelegate
+	{
+		public System_Func_string_string_bool_Event(LuaFunction func) : base(func) { }
+		public System_Func_string_string_bool_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public bool Call(string param0, string param1)
+		{
+			func.BeginPCall();
+			func.Push(param0);
+			func.Push(param1);
+			func.PCall();
+			bool ret = func.CheckBoolean();
+			func.EndPCall();
+			return ret;
+		}
+
+		public bool CallWithSelf(string param0, string param1)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.Push(param0);
+			func.Push(param1);
+			func.PCall();
+			bool ret = func.CheckBoolean();
+			func.EndPCall();
+			return ret;
+		}
+	}
+
+	public System.Func<string,string,bool> System_Func_string_string_bool(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			System.Func<string,string,bool> fn = delegate(string param0, string param1) { return false; };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			System_Func_string_string_bool_Event target = new System_Func_string_string_bool_Event(func);
+			System.Func<string,string,bool> d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			System_Func_string_string_bool_Event target = new System_Func_string_string_bool_Event(func, self);
+			System.Func<string,string,bool> d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_System_Func_string_string_bool(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(System.Func<string,string,bool>), L, pos);
+	}
+
+	void Push_System_Func_string_string_bool(IntPtr L, System.Func<string,string,bool> o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class UltimateDH_Value_HttpCallBackMessage_Filter_Event : LuaDelegate
+	{
+		public UltimateDH_Value_HttpCallBackMessage_Filter_Event(LuaFunction func) : base(func) { }
+		public UltimateDH_Value_HttpCallBackMessage_Filter_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public HttpCallBackMessage Call(HttpCallBackMessage param0, HttpCallBackMessage param1)
+		{
+			func.BeginPCall();
+			func.PushObject(param0);
+			func.PushObject(param1);
+			func.PCall();
+			HttpCallBackMessage ret = (HttpCallBackMessage)func.CheckObject(typeof(HttpCallBackMessage));
+			func.EndPCall();
+			return ret;
+		}
+
+		public HttpCallBackMessage CallWithSelf(HttpCallBackMessage param0, HttpCallBackMessage param1)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.PushObject(param0);
+			func.PushObject(param1);
+			func.PCall();
+			HttpCallBackMessage ret = (HttpCallBackMessage)func.CheckObject(typeof(HttpCallBackMessage));
+			func.EndPCall();
+			return ret;
+		}
+	}
+
+	public UltimateDH.Value<HttpCallBackMessage>.Filter UltimateDH_Value_HttpCallBackMessage_Filter(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			UltimateDH.Value<HttpCallBackMessage>.Filter fn = delegate(HttpCallBackMessage param0, HttpCallBackMessage param1) { return null; };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			UltimateDH_Value_HttpCallBackMessage_Filter_Event target = new UltimateDH_Value_HttpCallBackMessage_Filter_Event(func);
+			UltimateDH.Value<HttpCallBackMessage>.Filter d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			UltimateDH_Value_HttpCallBackMessage_Filter_Event target = new UltimateDH_Value_HttpCallBackMessage_Filter_Event(func, self);
+			UltimateDH.Value<HttpCallBackMessage>.Filter d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_UltimateDH_Value_HttpCallBackMessage_Filter(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(UltimateDH.Value<HttpCallBackMessage>.Filter), L, pos);
+	}
+
+	void Push_UltimateDH_Value_HttpCallBackMessage_Filter(IntPtr L, UltimateDH.Value<HttpCallBackMessage>.Filter o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class LitJson_WrapperFactory_Event : LuaDelegate
+	{
+		public LitJson_WrapperFactory_Event(LuaFunction func) : base(func) { }
+		public LitJson_WrapperFactory_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public LitJson.IJsonWrapper Call()
+		{
+			func.BeginPCall();
+			func.PCall();
+			LitJson.IJsonWrapper ret = (LitJson.IJsonWrapper)func.CheckObject(typeof(LitJson.IJsonWrapper));
+			func.EndPCall();
+			return ret;
+		}
+
+		public LitJson.IJsonWrapper CallWithSelf()
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.PCall();
+			LitJson.IJsonWrapper ret = (LitJson.IJsonWrapper)func.CheckObject(typeof(LitJson.IJsonWrapper));
+			func.EndPCall();
+			return ret;
+		}
+	}
+
+	public LitJson.WrapperFactory LitJson_WrapperFactory(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			LitJson.WrapperFactory fn = delegate() { return null; };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			LitJson_WrapperFactory_Event target = new LitJson_WrapperFactory_Event(func);
+			LitJson.WrapperFactory d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			LitJson_WrapperFactory_Event target = new LitJson_WrapperFactory_Event(func, self);
+			LitJson.WrapperFactory d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_LitJson_WrapperFactory(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(LitJson.WrapperFactory), L, pos);
+	}
+
+	void Push_LitJson_WrapperFactory(IntPtr L, LitJson.WrapperFactory o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class UnityEngine_UI_InputField_OnValidateInput_Event : LuaDelegate
+	{
+		public UnityEngine_UI_InputField_OnValidateInput_Event(LuaFunction func) : base(func) { }
+		public UnityEngine_UI_InputField_OnValidateInput_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public char Call(string param0, int param1, char param2)
+		{
+			func.BeginPCall();
+			func.Push(param0);
+			func.Push(param1);
+			func.Push(param2);
+			func.PCall();
+			char ret = (char)func.CheckNumber();
+			func.EndPCall();
+			return ret;
+		}
+
+		public char CallWithSelf(string param0, int param1, char param2)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.Push(param0);
+			func.Push(param1);
+			func.Push(param2);
+			func.PCall();
+			char ret = (char)func.CheckNumber();
+			func.EndPCall();
+			return ret;
+		}
+	}
+
+	public UnityEngine.UI.InputField.OnValidateInput UnityEngine_UI_InputField_OnValidateInput(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			UnityEngine.UI.InputField.OnValidateInput fn = delegate(string param0, int param1, char param2) { return '\0'; };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			UnityEngine_UI_InputField_OnValidateInput_Event target = new UnityEngine_UI_InputField_OnValidateInput_Event(func);
+			UnityEngine.UI.InputField.OnValidateInput d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			UnityEngine_UI_InputField_OnValidateInput_Event target = new UnityEngine_UI_InputField_OnValidateInput_Event(func, self);
+			UnityEngine.UI.InputField.OnValidateInput d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_UnityEngine_UI_InputField_OnValidateInput(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(UnityEngine.UI.InputField.OnValidateInput), L, pos);
+	}
+
+	void Push_UnityEngine_UI_InputField_OnValidateInput(IntPtr L, UnityEngine.UI.InputField.OnValidateInput o)
+	{
+		ToLua.Push(L, o);
+	}
+
+	class UnityEngine_Events_UnityAction_string_Event : LuaDelegate
+	{
+		public UnityEngine_Events_UnityAction_string_Event(LuaFunction func) : base(func) { }
+		public UnityEngine_Events_UnityAction_string_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+		public void Call(string param0)
+		{
+			func.BeginPCall();
+			func.Push(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+
+		public void CallWithSelf(string param0)
+		{
+			func.BeginPCall();
+			func.Push(self);
+			func.Push(param0);
+			func.PCall();
+			func.EndPCall();
+		}
+	}
+
+	public UnityEngine.Events.UnityAction<string> UnityEngine_Events_UnityAction_string(LuaFunction func, LuaTable self, bool flag)
+	{
+		if (func == null)
+		{
+			UnityEngine.Events.UnityAction<string> fn = delegate(string param0) { };
+			return fn;
+		}
+
+		if(!flag)
+		{
+			UnityEngine_Events_UnityAction_string_Event target = new UnityEngine_Events_UnityAction_string_Event(func);
+			UnityEngine.Events.UnityAction<string> d = target.Call;
+			target.method = d.Method;
+			return d;
+		}
+		else
+		{
+			UnityEngine_Events_UnityAction_string_Event target = new UnityEngine_Events_UnityAction_string_Event(func, self);
+			UnityEngine.Events.UnityAction<string> d = target.CallWithSelf;
+			target.method = d.Method;
+			return d;
+		}
+	}
+
+	bool Check_UnityEngine_Events_UnityAction_string(IntPtr L, int pos)
+	{
+		return TypeChecker.CheckDelegateType(typeof(UnityEngine.Events.UnityAction<string>), L, pos);
+	}
+
+	void Push_UnityEngine_Events_UnityAction_string(IntPtr L, UnityEngine.Events.UnityAction<string> o)
 	{
 		ToLua.Push(L, o);
 	}

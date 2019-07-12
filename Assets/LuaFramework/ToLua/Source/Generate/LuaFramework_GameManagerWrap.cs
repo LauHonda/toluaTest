@@ -9,6 +9,7 @@ public class LuaFramework_GameManagerWrap
 		L.BeginClass(typeof(LuaFramework.GameManager), typeof(Manager));
 		L.RegFunction("CheckExtractResource", CheckExtractResource);
 		L.RegFunction("OnResourceInited", OnResourceInited);
+		L.RegFunction("LoadScene", LoadScene);
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.EndClass();
@@ -38,6 +39,23 @@ public class LuaFramework_GameManagerWrap
 			ToLua.CheckArgsCount(L, 1);
 			LuaFramework.GameManager obj = (LuaFramework.GameManager)ToLua.CheckObject<LuaFramework.GameManager>(L, 1);
 			obj.OnResourceInited();
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int LoadScene(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			string arg0 = ToLua.CheckString(L, 1);
+			LuaFunction arg1 = ToLua.CheckLuaFunction(L, 2);
+			LuaFramework.GameManager.LoadScene(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)
