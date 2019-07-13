@@ -42,6 +42,7 @@ public class AccountPersistence
         this.PersistenceName = PersistenceName;
         Tog.onValueChanged.AddListener(delegate (bool IsOn)
         {
+            
             if (!IsOn && ES2.Exists(PersistenceName))
             {
                 ES2.Delete(PersistenceName);

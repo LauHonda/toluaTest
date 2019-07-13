@@ -8,6 +8,7 @@ using Utils;
 using UnityEngine.SceneManagement;
 using UltimateDH;
 using Tools;
+
 public class GameManagerhttp : MonoBehaviour
 {
     public static GameManagerhttp GetGameManager;
@@ -17,14 +18,15 @@ public class GameManagerhttp : MonoBehaviour
         GetGameManager = this;
         //清除对象池缓存
         ObjectPool.GetInstance().ClearAll();
-        ListCreatTools.Clear();   
+        ListCreatTools.Clear();
+        
     }
 
     private void Start()
     {
         WinParent = GameObject.Find("CanvasTop").GetComponent<TransformData>();
         UpdateWin.Send(WinParent.Init());
-        DontDestroyOnLoad(WinParent.gameObject);
+        //DontDestroyOnLoad(WinParent.gameObject);
         //StartCoroutine("TimeDoAction");
 
     }

@@ -11,14 +11,6 @@ public class ES2Init : MonoBehaviour
 	{
 		Init();
 	}
-	
-	public void Start()
-	{
-		if(Application.isEditor)
-			GameObject.DestroyImmediate(gameObject);
-		else
-			GameObject.Destroy(gameObject);
-	}
 
 	public static void Init()
 	{

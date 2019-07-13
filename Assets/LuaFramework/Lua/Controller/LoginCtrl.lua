@@ -88,8 +88,8 @@ function  LoginCtrl.Loading_CallBack(go)
      --*** 进行加密 *** --
     if(go.Code == HttpCode.SUCCESS)
     then
-        Account.Write();
-        PassWord.Write();
+        Account:Write();
+        PassWord:Write();
     elseif(go.Code == HttpCode.FAILED)
     then
     local JsonGroup=cjson.decode(LitJson.JsonMapper.ToJson(go.Data));

@@ -194,6 +194,7 @@ public static class CustomSettings
         _GT(typeof(ScrollRect)),
         _GT(typeof(InputField)),
         _GT(typeof(InputField.SubmitEvent)),
+        _GT(typeof(ES2)),
     };
 
     public static List<Type> dynamicList = new List<Type>()
