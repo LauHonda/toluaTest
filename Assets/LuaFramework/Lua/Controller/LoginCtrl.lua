@@ -90,6 +90,7 @@ function  LoginCtrl.Loading_CallBack(go)
     then
         Account:Write();
         PassWord:Write();
+        LuaFramework.GameManager.LoadScene("Scene1",this.LoadScene_CallBack);
     elseif(go.Code == HttpCode.FAILED)
     then
     local JsonGroup=cjson.decode(LitJson.JsonMapper.ToJson(go.Data));
@@ -109,6 +110,12 @@ function  LoginCtrl.Loading_CallBack(go)
      --LuaFramework.Util.LoadScene("menu");
      --GameMenu:OnInitOK();
 end
+
+
+function LoginCtrl.LoadScene_CallBack()
+    LuaFramework.Util.Log("进入场景了");
+end
+
 --关闭事件--
 function LoginCtrl.Close()
     panelMgr:ClosePanel(CtrlNames.Test);
