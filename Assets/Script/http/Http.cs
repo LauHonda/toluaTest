@@ -87,7 +87,7 @@ public class Http : NewMessageInfo
     /// <param name="Clear">指定每次请求之后是否清除事件</param>
     public void Send(bool Clear = false, bool NoShow = false)
     {
-        string F_ID = GameManagerhttp.GetGameManager.FriendID;
+        string F_ID = GameManagerHttp.GetGameManager.FriendID;
         if (!string.IsNullOrEmpty(F_ID))
         {
             AddData("friend_id", F_ID);

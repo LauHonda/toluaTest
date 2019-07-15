@@ -22,7 +22,7 @@ public class MessageManager : MonoBehaviour
 
     void Start()
     {
-        var CanvasObj = GameManagerhttp.GetGameManager.WinParent.transform;
+        var CanvasObj = GameManagerHttp.GetGameManager.WinParent.transform;
 
         var obj = Resources.Load("Win/LoadLogo");
         ShowLoad = GameObject.Instantiate(obj, CanvasObj.transform) as GameObject;

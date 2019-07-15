@@ -111,7 +111,7 @@ public class MainScene : HttpBaseBLL
     {
         Http http = HttpCreatTools.CreatHttp("ajax_fodder_stole.php");
         http.AddData("huiyuan_id", CachingRegion.Get("huiyuan_id"));
-        http.AddData("id", GameManagerhttp.GetGameManager.FriendID);
+        http.AddData("id", GameManagerHttp.GetGameManager.FriendID);
         http.Send();
         http.CurrentData.AddChangeListener(delegate (HttpCallBackMessage msg)
         {
@@ -161,12 +161,12 @@ public class MainScene : HttpBaseBLL
 
     private bool IsSelf()
     {
-        return string.IsNullOrEmpty(GameManagerhttp.GetGameManager.FriendID);
+        return string.IsNullOrEmpty(GameManagerHttp.GetGameManager.FriendID);
     }
 
     private bool IsFriend()
     {
-        return !string.IsNullOrEmpty(GameManagerhttp.GetGameManager.FriendID);
+        return !string.IsNullOrEmpty(GameManagerHttp.GetGameManager.FriendID);
     }
 
 
@@ -178,7 +178,7 @@ public class MainScene : HttpBaseBLL
             TrySteal.Try();
         });
 
-        GameManagerhttp.GetGameManager.FriendID = ID;
+        GameManagerHttp.GetGameManager.FriendID = ID;
         transformData.GetTransform("butonGroup").gameObject.SetActive(false);
         transformData.GetTransform("Mask").gameObject.SetActive(true);
         transformData.GetTransform("Home").gameObject.SetActive(true);
@@ -189,7 +189,7 @@ public class MainScene : HttpBaseBLL
     private void BackMySelf()
     {
         transformData.GetButton("siliao").onClick.RemoveAllListeners();
-        GameManagerhttp.GetGameManager.FriendID = null;
+        GameManagerHttp.GetGameManager.FriendID = null;
         transformData.GetTransform("butonGroup").gameObject.SetActive(true);
         transformData.GetTransform("Mask").gameObject.SetActive(false);
         transformData.GetTransform("Home").gameObject.SetActive(false);

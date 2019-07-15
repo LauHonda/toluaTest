@@ -9,9 +9,9 @@ using UnityEngine.SceneManagement;
 using UltimateDH;
 using Tools;
 
-public class GameManagerhttp : MonoBehaviour
+public class GameManagerHttp : MonoBehaviour
 {
-    public static GameManagerhttp GetGameManager;
+    public static GameManagerHttp GetGameManager;
 
     public void Awake()
     {

@@ -61,9 +61,9 @@ lua/3rd/sproto/testrpc.lua|62e1d66bbdf0abb43f8c14f9be9f007b
 lua/Common/define.lua|f39f2e0a5e42fbabe5d7d0e3a2f8a6af
 lua/Common/functions.lua|ff1ffcc2289a05dccca1387c9b22298c
 lua/Common/protocal.lua|9842a503ab8c2b53be70d0053453337d
-lua/Controller/LoginCtrl.lua|d800719e5e049fe06c4859046f8718a9
+lua/Controller/LoginCtrl.lua|5d1e28ce9228003c20908570d5489e0f
 lua/Controller/MessageCtrl.lua|9dae410267472a32b8fa26348bceb859
-lua/Controller/PromptCtrl.lua|0908fd568b2d8cfe5c16a87c7d612dbd
+lua/Controller/PromptCtrl.lua|18ec1e7ea4eba34aa875acb4a120731f
 lua/Logic/CtrlManager.lua|125a2918830084c59c1784a01e63616b
 lua/Logic/Game.lua|b8bb4cd9bb67bfaae941f439008a6f85
 lua/Logic/GameMainScene.lua|e4418a0c2ff025f56117dc5878adea13

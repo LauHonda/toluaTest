@@ -17,8 +17,8 @@ public abstract class HttpBase : MonoBehaviour
 
     private void Awake()
     {
-        if (GameManagerhttp.GetGameManager)
-            GameManagerhttp.GetGameManager.UpdateWin.AddListener(delegate (TransformData winbody)
+        if (GameManagerHttp.GetGameManager)
+            GameManagerHttp.GetGameManager.UpdateWin.AddListener(delegate (TransformData winbody)
             {
                 if (WinID() != null)
                     Win = winbody.Get<TransformData>(WinID()).Init();
