@@ -17,9 +17,9 @@ namespace LuaFramework {
         /// 否则就需要自己将StreamingAssets里面的所有内容
         /// 复制到自己的Webserver上面，并修改下面的WebUrl。
         /// </summary>
-        public const bool UpdateMode = false;                       //更新模式-默认关闭 
+        public const bool UpdateMode = true;                       //更新模式-默认关闭 
         public const bool LuaByteMode = false;                       //Lua字节码模式-默认关闭 
-        public const bool LuaBundleMode = false;                    //Lua代码AssetBundle模式
+        public const bool LuaBundleMode = true;                    //Lua代码AssetBundle模式
 
         public const int TimerInterval = 1;
         public const int GameFrameRate = 30;                        //游戏帧频
@@ -32,9 +32,9 @@ namespace LuaFramework {
 
 
 #if UNITY_ANDROID
-        public const string WebUrl = "http://192.168.101.121:8000/StreamingAssets/Android/";      //测试更新地址
+        public const string WebUrl = "http://192.168.101.122:8000/StreamingAssets/Android/";      //测试更新地址
 #elif UNITY_IPHONE
-        public const string WebUrl = "http://192.168.101.121:8000/StreamingAssets/IOS/";      //测试更新地址
+        public const string WebUrl = "http://192.168.101.122:8000/StreamingAssets/IOS/";      //测试更新地址
 #endif
 
         public static string UserId = string.Empty;                 //用户ID

@@ -6,6 +6,7 @@ using LuaInterface;
 using System.Reflection;
 using System.IO;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace LuaFramework {
     public class GameManager : Manager {
@@ -24,11 +25,22 @@ namespace LuaFramework {
         /// </summary>
         void Init() {
             //DontDestroyOnLoad(gameObject);  //防止销毁自己
-
+            InitDownLoadPanle();
             CheckExtractResource(); //释放资源
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
             Application.targetFrameRate = AppConst.GameFrameRate;
         }
+
+        Slider slider;
+        Text msg;
+        float count = 0;
+        void  InitDownLoadPanle()
+        {
+            var DownLoadUI = Instantiate(Resources.Load("Win/DownLoadPanle"),GameObject.Find("Canvas").transform);
+            slider = ((GameObject)DownLoadUI).transform.Find("Slider").GetComponent<Slider>();
+            msg = ((GameObject)DownLoadUI).transform.Find("msg").GetComponent<Text>();
+        }
+
 
         /// <summary>
         /// 释放资源
@@ -36,8 +48,11 @@ namespace LuaFramework {
         public void CheckExtractResource() {
             bool isExists = Directory.Exists(Util.DataPath) &&
               Directory.Exists(Util.DataPath + "lua/") && File.Exists(Util.DataPath + "files.txt");
+
+            msg.text = "检测更新";
             if (isExists || AppConst.DebugMode) {
                 StartCoroutine(OnUpdateResource());
+                
                 return;   //文件已经解压过了，自己可添加检查文件列表逻辑
             }
             StartCoroutine(OnExtractResource());    //启动释放协成 
@@ -71,12 +86,16 @@ namespace LuaFramework {
             //释放所有文件到数据目录
             string[] files = File.ReadAllLines(outfile);
             foreach (var file in files) {
+                count++;
+                slider.value = count / files.Length * 1;
+                
                 string[] fs = file.Split('|');
                 infile = resPath + fs[0];  //
                 outfile = dataPath + fs[0];
 
                 message = "正在解包文件:>" + fs[0];
                 Debug.Log("正在解包文件:>" + infile);
+                msg.text = "正在解包文件:>" + infile;
                 facade.SendMessageCommand(NotiConst.UPDATE_MESSAGE, message);
 
                 string dir = Path.GetDirectoryName(outfile);
@@ -104,6 +123,7 @@ namespace LuaFramework {
 
             message = string.Empty;
             //释放完成，开始启动更新资源
+            count = 0;
             StartCoroutine(OnUpdateResource());
         }
 
@@ -135,6 +155,10 @@ namespace LuaFramework {
             string[] files = filesText.Split('\n');
 
             for (int i = 0; i < files.Length; i++) {
+
+                count++;
+                slider.value = count / files.Length * 1;
+
                 if (string.IsNullOrEmpty(files[i])) continue;
                 string[] keyValue = files[i].Split('|');
                 string f = keyValue[0];
@@ -153,7 +177,8 @@ namespace LuaFramework {
                 }
                 if (canUpdate) {   //本地缺少文件
                     Debug.Log(fileUrl);
-                    message = "downloading>>" + fileUrl;
+                    message = "正在下载>>" + fileUrl;
+                    msg.text = "正在下载>>" + fileUrl;
                     facade.SendMessageCommand(NotiConst.UPDATE_MESSAGE, message);
                     /*
                     www = new WWW(fileUrl); yield return www;

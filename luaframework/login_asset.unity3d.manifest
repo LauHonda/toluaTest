@@ -1,0 +1,35 @@
+ManifestFileVersion: 0
+CRC: 3546738224
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: eb4480cf6e9590bd12e40234559d1ffb
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 36c33a819640bead83b84b1645a12e6d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- "Assets/Material/Image/Login/\u5FAE\u4FE1\u56FE\u7247_20190605165843.png"
+- Assets/Material/Image/Login/denglu.png
+- "Assets/Material/Image/Login/\u5FAE\u4FE1\u56FE\u7247_20190529150825.png"
+- "Assets/Material/Image/Login/\u767B\u5F55_10.png"
+- "Assets/Material/Image/Login/\u8D26\u6237\u767B\u5F55_04.png"
+- Assets/Material/Image/Login/big.png
+- Assets/Material/Image/Login/fanhui.png
+- Assets/Material/Image/Login/zhuce2.png
+- Assets/Material/Image/Login/zhuce.png
+- Assets/Material/Image/Login/small.png
+- Assets/Material/Image/Login/bg.png
+- Assets/Material/Image/Login/zhaohui.png
+- Assets/Material/Image/Login/zhaohui_03.png
+- "Assets/Material/Image/Login/\u8D26\u6237\u767B\u5F55_01.png"
+- "Assets/Material/Image/Login/\u5FAE\u4FE1\u56FE\u7247_20190605165820.png"
+- "Assets/Material/Image/Login/\u6CE8\u518C_03.png"
+- "Assets/Material/Image/Login/\u8D26\u6237\u767B\u5F551_07.png"
+- "Assets/Material/Image/Login/\u767B\u5F55_07.png"
+Dependencies: []

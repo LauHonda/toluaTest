@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1172447647
+CRC: 1438336462
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7770ecdcde5e4b7600a996cfa414d263
+    Hash: 33285dea2c261a0a64cbf42db33ff07f
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 0ecc41a17ed39e6ed10c123c1c49f9c9
+    Hash: d2f629b9d5257b6d1dfc87ef6d60ddd4
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -17,6 +17,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 - Class: 114
   Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 - Class: 114
@@ -39,4 +41,5 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Prefab/UI/Login/LoginPanel.prefab
-Dependencies: []
+Dependencies:
+- /Users/Honda_Lau/Mine/Project/GitKraken_pro/toluaTest/Assets/StreamingAssets/login_asset.unity3d
